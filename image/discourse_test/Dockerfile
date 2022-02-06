@@ -1,7 +1,7 @@
 # NAME:     discourse/discourse_test
 # VERSION:  release
 ARG tag=build
-FROM discourse/base:$tag
+FROM discourse/base:build
 ENV RAILS_ENV test
 
 MAINTAINER Sam Saffron "https://twitter.com/samsaffron"
