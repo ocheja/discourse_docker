@@ -89,9 +89,10 @@ run:
         - git reset --hard
         - git clean -f
         - git remote set-branches --add origin main
-        - git remote set-branches origin $version
-        - git fetch --depth 1 origin $version
-        - git checkout $version
+        - git remote set-branches --add origin babel
+        - git remote set-branches origin babel
+        - git fetch --depth 1 origin babel
+        - git checkout babel
         - mkdir -p tmp
         - chown discourse:www-data tmp
         - mkdir -p tmp/pids
