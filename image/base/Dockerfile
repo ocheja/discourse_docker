@@ -5,6 +5,7 @@ FROM debian:buster-slim
 ENV PG_MAJOR 13
 ENV RUBY_ALLOCATOR /usr/lib/libjemalloc.so.1
 ENV RAILS_ENV production
+ENV GITHUB_KEY 'API_KEY'
 
 #LABEL maintainer="Sam Saffron \"https://twitter.com/samsaffron\""
 
@@ -132,10 +133,10 @@ ADD cron.d_anacron /etc/cron.d/anacron
 RUN useradd discourse -s /bin/bash -m -U &&\
     mkdir -p /var/www &&\
     cd /var/www &&\
-    git clone https://github.com/ocheja/bbbs.git &&\
-    git checkout babel &&\
+    git clone https://${GITHUB_KEY}@github.com/babelsys/bbbs.git discourse &&\
     cd discourse &&\
-    git remote set-branches --add origin tests-passed &&\
+    git remote set-branches --add origin babel &&\
+    git checkout babel &&\
     chown -R discourse:discourse /var/www/discourse &&\
     cd /var/www/discourse &&\
     sudo -u discourse bundle install --deployment --jobs 4 --without test development &&\
